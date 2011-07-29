@@ -1,4 +1,4 @@
-module SimpleForm
+module SimpleShow
   module ApplicationHelper
     def simple_show_for(record, options = {}, &block)
       raise ArgumentError, "Missing block" unless block_given?

@@ -1,5 +1,5 @@
 module SimpleShow
-  class Railtie < Rails::Railtie
+  class Engine < Rails::Engine
     initializer "simple_show.setup" do
       config.to_prepare do
         ApplicationController.helper(::SimpleShow::ApplicationHelper)
