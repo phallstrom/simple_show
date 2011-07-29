@@ -1,4 +1,5 @@
 require 'simple_show/base'
+require 'simple_show/railtie'
 
 module SimpleShow
 
