@@ -83,6 +83,8 @@ if you don't want that BR tag then set SimpleShow.clear_on_close to false.
 
 - Add support for associations.
 - Add options for formatting and booleans.
+- Add option :if/:unless => :method_sym so we can say things like "s.show...
+  :unless => :blank?" to hide the field entirely.
 
 == License:
 
