@@ -1,1 +1,1 @@
-rvm use gemset simple_show
+rvm gemset use simple_show
