@@ -1,7 +1,14 @@
-ENV['RAILS_ENV'] = 'test'
+require 'rubygems'
+require 'bundler/setup'
 
-require File.expand_path('../rails_app/config/environment.rb',  __FILE__)
-require 'rails/test_help'
+require 'test/unit'
+require 'pp'
 
-Rails.backtrace_cleaner.remove_silencers!
-ActiveRecord::Migrator.migrate File.expand_path('../rails_app/db/migrate/', __FILE__)
+require 'active_model'
+require 'action_controller'
+require 'action_view'
+require 'action_view/base'
+require 'action_view/template'
+
+require 'simple_show'
+require 'app/helpers/simple_show/application_helper'
