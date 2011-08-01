@@ -6,25 +6,30 @@ module SimpleShow
       @options = options
     end
 
-    def show(attr, options = {})
-      output = label(attr, options)
-      output += value(attr, options)
+    def show(attr, options = {}, &block)
+      output = label(attr, options, &block)
+      output += value(attr, options, &block)
       if SimpleShow.wrapper_tag.nil?
-        output
+        @binding.output_buffer += output
       else
-        @binding.content_tag(SimpleShow.wrapper_tag, output, :class => SimpleShow.wrapper_class)
+        @binding.output_buffer += @binding.content_tag(SimpleShow.wrapper_tag, output, :class => SimpleShow.wrapper_class)
       end
     end
 
-    def label(attr, options = {})
+    def label(attr, options = {}, &block)
       @binding.content_tag(SimpleShow.label_tag, :class => SimpleShow.label_class) do
         [SimpleShow.label_prefix, options[:label] || @record.class.human_attribute_name(attr), SimpleShow.label_suffix].compact.join
       end
     end
 
-    def value(attr, options = {})
+    def value(attr, options = {}, &block)
+      if block_given?
+        value = yield(@record)
+      else
+        value = options[:value] || @record.send(attr)
+      end
       @binding.content_tag(SimpleShow.value_tag, :class => SimpleShow.value_class) do
-        [SimpleShow.value_prefix, @record.send(attr), SimpleShow.value_suffix].compact.join
+        [SimpleShow.value_prefix, value, SimpleShow.value_suffix].compact.join
       end
     end
   end

@@ -15,13 +15,7 @@ require 'action_view/template'
 require 'simple_show'
 require 'app/helpers/simple_show/application_helper'
 
-class SimpleShowTestCase < ActiveSupport::TestCase
-  include SimpleShow::ApplicationHelper
-  include ActionController::RecordIdentifier
-  include ActionView::Helpers::CaptureHelper
-  include ActionView::Helpers::TagHelper
-  attr_accessor :output_buffer
-end
+################################################################################
 
 ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :database => ":memory:")
 ActiveRecord::Migration.verbose = false
@@ -38,5 +32,29 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 end
 
+################################################################################
+
 class Golfer < ActiveRecord::Base
 end
+
+################################################################################
+
+class SimpleShowTestCase < ActiveSupport::TestCase
+  include SimpleShow::ApplicationHelper
+  include ActionController::RecordIdentifier
+  include ActionView::Helpers::CaptureHelper
+  include ActionView::Helpers::TagHelper
+  attr_accessor :output_buffer
+
+  def setup
+    @philip = Golfer.create!(
+      :name           => 'Philip Hallstrom',
+      :phone          => '3604801209',
+      :email          => 'philip@pjkh.com',
+      :born_on        => Date.civil(1974, 5, 24),
+      :is_left_handed => true,
+      :handicap       => 6.5
+    )
+  end
+end
+

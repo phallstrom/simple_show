@@ -2,17 +2,6 @@ require 'test_helper'
 
 class SimpleShowForTest < SimpleShowTestCase
 
-  def setup
-    @philip = Golfer.create!(
-      :name           => 'Philip Hallstrom',
-      :phone          => '3604801209',
-      :email          => 'philip@pjkh.com',
-      :born_on        => Date.civil(1974, 5, 24),
-      :is_left_handed => true,
-      :handicap       => 6.5
-    )
-  end
-
   test 'simple_show_for raises error without a block' do
     assert_raise ArgumentError do
       simple_show_for 
