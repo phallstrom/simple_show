@@ -29,11 +29,11 @@ Run the generator:
 Assume we have a Person object with name, phone, email, born_on, etc.
 In our show action we can then do this:
 
-    <%= simple_show_for @johndoe do |f| %>
-      <%= f.show :name %>
-      <%= f.show :phone, :label => 'Telephone' %>
-      <%= f.show(:email) {|o| o.email.downcase}  %>
-      <%= f.show :born_on, :value => '**censored**'  %>
+    <%= simple_show_for @johndoe do |s| %>
+      <%= s.show :name %>
+      <%= s.show :phone, :label => 'Telephone' %>
+      <%= s.show(:email) {|o| o.email.downcase}  %>
+      <%= s.show :born_on, :value => '**censored**'  %>
     <% end %>
 
 Which would generate (using the defaults) output like this:

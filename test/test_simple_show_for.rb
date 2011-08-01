@@ -9,7 +9,7 @@ class SimpleShowForTest < SimpleShowTestCase
   end
 
   test 'html wrapper includes the correct id and class' do
-    doc = Nokogiri::HTML.fragment(simple_show_for @philip do |f| 
+    doc = Nokogiri::HTML.fragment(simple_show_for @philip do |s| 
       ''
     end)
     assert_equal %w[simple_show golfer], doc.at('div').attr('class').split(/\s+/)
@@ -19,7 +19,7 @@ class SimpleShowForTest < SimpleShowTestCase
   test 'last tag is a BR that clears all when enabled' do
     clear_on_close = SimpleShow::clear_on_close
     SimpleShow::clear_on_close = true
-    doc = Nokogiri::HTML.fragment(simple_show_for @philip do |f| 
+    doc = Nokogiri::HTML.fragment(simple_show_for @philip do |s| 
       ''
     end)
     SimpleShow::clear_on_close = clear_on_close
@@ -30,7 +30,7 @@ class SimpleShowForTest < SimpleShowTestCase
   test 'last tag is not a BR when disabled' do
     clear_on_close = SimpleShow::clear_on_close
     SimpleShow::clear_on_close = false
-    doc = Nokogiri::HTML.fragment(simple_show_for @philip do |f| 
+    doc = Nokogiri::HTML.fragment(simple_show_for @philip do |s| 
       ''
     end)
     assert_not_equal 'br', doc.at('div').elements.last.try(:name)
