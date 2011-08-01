@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Philip Hallstrom"]
   s.email       = ["philip@pjkh.com"]
   s.homepage    = ""
-  s.summary     = %q{SimpleShow is #new what SimpleForm is to #edit}
-  s.description = %q{SimpleShow is #new what SimpleForm is to #edit}
+  s.summary     = %q{SimpleShow is to #show what SimpleForm is to #edit}
+  s.description = %q{SimpleShow is to #show what SimpleForm is to #edit}
 
   s.rubyforge_project = "simple_show"
 
