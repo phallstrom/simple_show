@@ -34,6 +34,9 @@ In our show action we can then do this:
       <%= s.show :phone, :label => 'Telephone' %>
       <%= s.show(:email) {|o| o.email.downcase}  %>
       <%= s.show :born_on, :value => '**censored**'  %>
+      <%= s.show :updated_at, :format => '%B %d'  %>
+      <%= s.show :created_at, :format => :short # Assumes you've defined a DATE_FORMAT for :short  %>
+      <%= s.show :cash_in_wallet, :format => '$%.2f'  %>
     <% end %>
 
 Which would generate (using the defaults) output like this:
@@ -55,6 +58,18 @@ Which would generate (using the defaults) output like this:
         <label>Born on:</label>
         <span class="value">**censored**</span>
       </div>
+      <div class="show">
+        <label>Updated at:</label>
+        <span class="value">August 2</span>
+      </div>
+      <div class="show">
+        <label>Created at:</label>
+        <span class="value">Aug 1 2010</span>
+      </div>
+      <div class="show">
+        <label>Cash in wallet:</label>
+        <span class="value">$123.45</span>
+      </div>
       <br clear="all">
     </div>
 
@@ -67,7 +82,7 @@ if you don't want that BR tag then set SimpleShow.clear_on_close to false.
 == TODO:
 
 - Add support for associations.
-- Add options for formatting dates, numerics, decimals, and booleans.
+- Add options for formatting and booleans.
 
 == License:
 
