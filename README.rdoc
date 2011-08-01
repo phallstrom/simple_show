@@ -6,22 +6,19 @@
 
 SimpleShow is to #show as SimpleForm is to #new/#edit.
 
-It's goal is to make it easy to easily and specifically target
-the key/value pairs using CSS to make the display pretty.
-
 == Requirements:
 
 * Rails 3
 
 == Install:
 
-Install the gem:
-
-    gem install simple_show
-
 Add it to your Gemfile:
 
     gem "simple_show"
+
+Update your bundle:
+
+    bundle update simple_show
 
 Run the generator:
 
@@ -67,12 +64,16 @@ There are a number of options that control the resulting HTML.
 See lib/simple_show.rb for what they are.  For example,
 if you don't want that BR tag then set SimpleShow.clear_on_close to false.
 
+== TODO:
+
+- Add support for associations.
+- Add options for formatting dates, numerics, decimals, and booleans.
 
 == License:
 
 (The MIT License)
 
-Copyright (c) 2011 Philip Hallstrom
+Copyright (c) 2011 Philip Hallstrom <philip@pjkh.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
