@@ -10,9 +10,9 @@ module SimpleShow
       output = label(attr, options, &block)
       output += value(attr, options, &block)
       if SimpleShow.wrapper_tag.nil?
-        @binding.output_buffer += output
+        output
       else
-        @binding.output_buffer += @binding.content_tag(SimpleShow.wrapper_tag, output, :class => SimpleShow.wrapper_class)
+        @binding.content_tag(SimpleShow.wrapper_tag, output, :class => SimpleShow.wrapper_class)
       end
     end
 
