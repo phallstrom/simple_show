@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SimpleShowTest < ActiveSupport::TestCase
+class SimpleShowTest < SimpleShowTestCase
 
   test 'setup block yields self' do
     SimpleShow.setup do |config|
