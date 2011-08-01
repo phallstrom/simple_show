@@ -1,5 +1,9 @@
+require 'action_view'
 require 'simple_show/base'
-require 'simple_show/railtie'
+
+if defined?(::Rails::Railtie)
+  require 'simple_show/railtie'
+end
 
 module SimpleShow
 
