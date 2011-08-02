@@ -23,17 +23,17 @@ class SimpleShowForTest < SimpleShowTestCase
       ''
     end)
     SimpleShow::clear_on_close = clear_on_close
-    assert_equal 'br', doc.at('div').elements.last.name
-    assert_equal 'all', doc.at('div').elements.last.attr('clear')
+    assert_equal 'div', doc.at('div').elements.last.name
+    assert_equal 'clear', doc.at('div').elements.last.attr('class')
   end
 
-  test 'last tag is not a BR when disabled' do
+  test 'last tag is not a div/clear when disabled' do
     clear_on_close = SimpleShow::clear_on_close
     SimpleShow::clear_on_close = false
     doc = Nokogiri::HTML.fragment(simple_show_for @philip do |s| 
       ''
     end)
-    assert_not_equal 'br', doc.at('div').elements.last.try(:name)
+    assert_not_equal 'clear', doc.at('div').elements.last.try(:attr, 'class')
     SimpleShow::clear_on_close = clear_on_close
   end
 

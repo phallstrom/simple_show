@@ -8,7 +8,7 @@ module SimpleShow
       options[:html][:class] = "#{SimpleShow.show_class} #{dom_class(record)} #{options[:html][:class]}".strip
 
       output = capture(SimpleShow::Base.new(self, record, options), &block)
-      output.concat tag(:br, :clear => 'all') if SimpleShow.clear_on_close
+      output.concat content_tag(:div, '', :class => 'clear') if SimpleShow.clear_on_close
 
       content_tag(:div, output, :id => options[:html][:id], :class => options[:html][:class])
     end
