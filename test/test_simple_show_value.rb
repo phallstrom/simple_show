@@ -15,6 +15,8 @@ class SimpleShowValueTest < SimpleShowTestCase
         o += s.show(:html) {|o| '<b>html</b>' }
         o += s.show :handicap, :format => '%.3f'
         o += s.show :name, :format => '%20s'
+        o += s.show :to_currency, :value => '12345.67', :to_currency => true
+        o += s.show :with_delimeter, :value => '12345.67', :with_delimiter => true
         o
       end
     )
@@ -41,6 +43,11 @@ class SimpleShowValueTest < SimpleShowTestCase
 
   test 'strings with formatting' do
     assert_equal '    Philip Hallstrom', @doc.css('span.value')[7].text
+  end
+
+  test 'number helpers' do
+    assert_equal '$12,345.67', @doc.css('span.value')[8].text
+    assert_equal '12,345.67', @doc.css('span.value')[9].text
   end
 
 end

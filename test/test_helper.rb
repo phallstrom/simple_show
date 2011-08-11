@@ -48,6 +48,7 @@ class SimpleShowTestCase < ActiveSupport::TestCase
   include ActionController::RecordIdentifier
   include ActionView::Helpers::CaptureHelper
   include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::NumberHelper
   attr_accessor :output_buffer
 
   def setup

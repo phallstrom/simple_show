@@ -36,7 +36,7 @@ In our show action we can then do this:
       <%= s.show :born_on, :value => '**censored**'  %>
       <%= s.show :updated_at, :format => '%B %d'  %>
       <%= s.show :created_at, :format => :short # Assumes you've defined a DATE_FORMAT for :short  %>
-      <%= s.show :cash_in_wallet, :format => '$%.2f'  %>
+      <%= s.show :cash_in_wallet, :to_currency => true  %>
       <%= s.show :height, :if => :tall %>
       <%= s.show :weight, :unless => :sensitive %>
     <% end %>
@@ -85,7 +85,7 @@ if you don't want that BR tag then set SimpleShow.clear_on_close to false.
 == TODO:
 
 - Add support for associations.
-- Add options for formatting and booleans.
+- Add options for booleans.
 
 == License:
 
