@@ -37,9 +37,12 @@ In our show action we can then do this:
       <%= s.show :updated_at, :format => '%B %d'  %>
       <%= s.show :created_at, :format => :short # Assumes you've defined a DATE_FORMAT for :short  %>
       <%= s.show :cash_in_wallet, :format => '$%.2f'  %>
+      <%= s.show :height, :if => :tall %>
+      <%= s.show :weight, :unless => :sensitive %>
     <% end %>
 
-Which would generate (using the defaults) output like this:
+Which would generate (using the defaults) output like this, assuming that
+@johndor.tall returns false and @johndoe.sensitive returns true:
 
     <div class="simple_show person" id="person_123">
       <div class="show">
@@ -83,8 +86,6 @@ if you don't want that BR tag then set SimpleShow.clear_on_close to false.
 
 - Add support for associations.
 - Add options for formatting and booleans.
-- Add option :if/:unless => :method_sym so we can say things like "s.show...
-  :unless => :blank?" to hide the field entirely.
 
 == License:
 

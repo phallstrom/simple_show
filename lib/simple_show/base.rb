@@ -7,8 +7,28 @@ module SimpleShow
     end
 
     def show(attr, options = {}, &block)
+      if options.key? :if
+        case options[:if]
+        when Symbol
+          options[:if] = @record.send(options[:if])
+        when Proc
+          options[:if] = options[:if].call
+        end
+        return nil if options[:if] == false
+      end
+      if options.key? :unless
+        case options[:unless]
+        when Symbol
+          options[:unless] = @record.send(options[:unless])
+        when Proc
+          options[:unless] = options[:unless].call
+        end
+        return nil unless options[:unless] == false
+      end
+
       output = label(attr, options, &block)
       output += value(attr, options, &block)
+
       if SimpleShow.wrapper_tag.nil?
         output
       else
