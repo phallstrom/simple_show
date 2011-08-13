@@ -48,15 +48,17 @@ module SimpleShow
       else
         value = options[:value] || @record.send(attr)
       end
-      if options[:format].present?
-        if [:datetime, :timestamp, :time, :date].include?(@record.class.columns_hash[attr.to_s].type)
-          value = value.send(options[:format].is_a?(Symbol) ? :to_s : :strftime, options[:format])
-        else
-          value = options[:format] % value
+      if value
+        if options[:format].present?
+          if [:datetime, :timestamp, :time, :date].include?(@record.class.columns_hash[attr.to_s].type)
+            value = value.send(options[:format].is_a?(Symbol) ? :to_s : :strftime, options[:format])
+          else
+            value = options[:format] % value
+          end
+        elsif (helper = %w[to_currency to_human to_human_size to_percentage to_phone with_delimiter with_precision].detect{|e| options[e.to_sym].present?})
+          options[helper.to_sym] = {} unless options[helper.to_sym].is_a? Hash
+          value = @binding.send("number_#{helper}", value, options[helper.to_sym])
         end
-      elsif (helper = %w[to_currency to_human to_human_size to_percentage to_phone with_delimiter with_precision].detect{|e| options[e.to_sym].present?})
-        options[helper.to_sym] = {} unless options[helper.to_sym].is_a? Hash
-        value = @binding.send("number_#{helper}", value, options[helper.to_sym])
       end
 
       @binding.content_tag(SimpleShow.value_tag, :class => SimpleShow.value_class) do
