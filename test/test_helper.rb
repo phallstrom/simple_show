@@ -43,6 +43,19 @@ end
 
 ################################################################################
 
+module ActionView
+  module Helpers
+    module TagHelper
+      def piglatin(str)
+        str[1..-1] + str[0,1] + 'ay'
+      end
+    end
+  end
+end
+    
+################################################################################
+
+
 class SimpleShowTestCase < ActiveSupport::TestCase
   include SimpleShow::ApplicationHelper
   include ActionController::RecordIdentifier

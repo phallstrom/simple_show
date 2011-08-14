@@ -4,6 +4,9 @@ class SimpleShowValueTest < SimpleShowTestCase
 
   def setup
     super
+    SimpleShow.setup do |config|
+      config.helpers[:to_piglatin] = :piglatin
+    end
     @doc = Nokogiri::HTML.fragment(
       simple_show_for @philip do |s| 
         o  = ActiveSupport::SafeBuffer.new
@@ -17,6 +20,8 @@ class SimpleShowValueTest < SimpleShowTestCase
         o += s.show :name, :format => '%20s'
         o += s.show :to_currency, :value => '12345.67', :to_currency => true
         o += s.show :with_delimeter, :value => '12345.67', :with_delimiter => true
+        o += s.show :with_delimeter, :value => '12345.67', :with_delimiter => {:delimiter => ' '}
+        o += s.show :custom_helper, :value => 'piglatin', :to_piglatin => true
         o
       end
     )
@@ -45,9 +50,14 @@ class SimpleShowValueTest < SimpleShowTestCase
     assert_equal '    Philip Hallstrom', @doc.css('span.value')[7].text
   end
 
-  test 'number helpers' do
+  test 'default helpers' do
     assert_equal '$12,345.67', @doc.css('span.value')[8].text
     assert_equal '12,345.67', @doc.css('span.value')[9].text
+    assert_equal '12 345.67', @doc.css('span.value')[10].text
+  end
+
+  test 'custom helpers' do
+    assert_equal 'iglatinpay', @doc.css('span.value')[11].text
   end
 
 end

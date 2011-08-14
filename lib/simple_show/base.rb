@@ -55,9 +55,11 @@ module SimpleShow
           else
             value = options[:format] % value
           end
-        elsif (helper = %w[to_currency to_human to_human_size to_percentage to_phone with_delimiter with_precision].detect{|e| options[e.to_sym].present?})
-          options[helper.to_sym] = {} unless options[helper.to_sym].is_a? Hash
-          value = @binding.send("number_#{helper}", value, options[helper.to_sym])
+        elsif (helper = (SimpleShow.helpers.keys & options.keys).first).present?
+          args = []
+          args << value
+          args << options[helper] if options[helper].is_a? Hash
+          value = @binding.send(SimpleShow.helpers[helper], *args)
         end
       end
 

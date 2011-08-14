@@ -43,6 +43,17 @@ module SimpleShow
   mattr_accessor :clear_on_close
   @@clear_on_close = true
 
+  mattr_accessor :helpers
+  @@helpers = {
+    :to_currency => :number_to_currency,
+    :to_human => :number_to_human,
+    :to_human_size => :number_to_human_size,
+    :to_percentage => :number_to_percentage,
+    :to_phone => :number_to_phone,
+    :with_delimiter => :number_with_delimiter,
+    :with_precision => :number_with_precision
+  }
+
   # Default way to setup SimpleShow. Run rails generate simple_show:install
   # to create a fresh initializer with all configuration values.
   def self.setup
