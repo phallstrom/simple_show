@@ -67,5 +67,9 @@ module SimpleShow
         [SimpleShow.value_prefix, value, SimpleShow.value_suffix].compact.join.html_safe
       end
     end
+
+    def object
+      @record
+    end
   end
 end
