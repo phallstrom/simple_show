@@ -48,7 +48,7 @@ module SimpleShow
       else
         value = options[:value] || @record.send(attr)
       end
-      if value
+      if !value.nil?
         if options[:format].present?
           if [:datetime, :timestamp, :time, :date].include?(@record.class.columns_hash[attr.to_s].type)
             value = value.send(options[:format].is_a?(Symbol) ? :to_s : :strftime, options[:format])
@@ -67,5 +67,10 @@ module SimpleShow
         [SimpleShow.value_prefix, value, SimpleShow.value_suffix].compact.join.html_safe
       end
     end
+
+    def object
+      @record
+    end
+
   end
 end
