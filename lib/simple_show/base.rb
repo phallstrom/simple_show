@@ -63,7 +63,7 @@ module SimpleShow
         end
       end
 
-      field_type = (@record.class.columns_hash[attr.to_s].type rescue nil)
+      field_type = @record.class.columns_hash[attr.to_s].instance_variable_get(:@type)
       @binding.content_tag(SimpleShow.value_tag, :class => [SimpleShow.value_class, field_type].compact) do
         [SimpleShow.value_prefix, value, SimpleShow.value_suffix].compact.join.html_safe
       end
