@@ -26,6 +26,11 @@ class SimpleShowValueTest < SimpleShowTestCase
       end
     )
   end
+  test 'css class for data types' do
+    assert @doc.css('span.value')[0].attr('class').split(/\s+/).include?('string') # :name
+    assert @doc.css('span.value')[6].attr('class').split(/\s+/).include?('decimal') # :handicap
+    assert @doc.css('span.value')[3].attr('class').split(/\s+/).include?('date') # :born_on
+  end
 
   test 'values and value overrides' do
     assert_equal 'Philip Hallstrom', @doc.css('span.value')[0].text
