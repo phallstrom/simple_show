@@ -71,5 +71,6 @@ module SimpleShow
     def object
       @record
     end
+
   end
 end
