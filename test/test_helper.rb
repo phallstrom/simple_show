@@ -13,7 +13,6 @@ require 'action_view/base'
 require 'action_view/template'
 
 require 'simple_show'
-require 'app/helpers/simple_show/application_helper'
 
 ################################################################################
 
@@ -57,7 +56,7 @@ end
 
 
 class SimpleShowTestCase < ActiveSupport::TestCase
-  include SimpleShow::ApplicationHelper
+  include SimpleShow::ActionViewExtensions::FormHelper
   include ActionController::RecordIdentifier
   include ActionView::Helpers::CaptureHelper
   include ActionView::Helpers::TagHelper

@@ -4,7 +4,7 @@ class SimpleShowShowTest < SimpleShowTestCase
 
   test ':if => true/false' do
     doc = Nokogiri::HTML.fragment(
-      simple_show_for @philip do |s| 
+      simple_show_for(@philip) do |s| 
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name, :if => true
         o += s.show :phone, :if => false
@@ -18,7 +18,7 @@ class SimpleShowShowTest < SimpleShowTestCase
     def @philip.method_returning_true; true; end
     def @philip.method_returning_false; false; end
     doc = Nokogiri::HTML.fragment(
-      simple_show_for @philip do |s| 
+      simple_show_for(@philip) do |s| 
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name, :if => :method_returning_true
         o += s.show :phone, :if => :method_returning_false
@@ -30,7 +30,7 @@ class SimpleShowShowTest < SimpleShowTestCase
 
   test ':if => {lambda}' do
     doc = Nokogiri::HTML.fragment(
-      simple_show_for @philip do |s| 
+      simple_show_for(@philip) do |s| 
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name, :if => lambda { true }
         o += s.show :phone, :if => lambda { false }
@@ -42,7 +42,7 @@ class SimpleShowShowTest < SimpleShowTestCase
 
   test ':unless => true/false' do
     doc = Nokogiri::HTML.fragment(
-      simple_show_for @philip do |s| 
+      simple_show_for(@philip) do |s| 
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name, :unless => true
         o += s.show :phone, :unless => false
@@ -56,7 +56,7 @@ class SimpleShowShowTest < SimpleShowTestCase
     def @philip.method_returning_true; true; end
     def @philip.method_returning_false; false; end
     doc = Nokogiri::HTML.fragment(
-      simple_show_for @philip do |s| 
+      simple_show_for(@philip) do |s| 
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name, :unless => :method_returning_true
         o += s.show :phone, :unless => :method_returning_false
@@ -68,7 +68,7 @@ class SimpleShowShowTest < SimpleShowTestCase
 
   test ':unless => {lambda}' do
     doc = Nokogiri::HTML.fragment(
-      simple_show_for @philip do |s| 
+      simple_show_for(@philip) do |s| 
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name, :unless => lambda { true }
         o += s.show :phone, :unless => lambda { false }

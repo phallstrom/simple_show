@@ -1,9 +1,6 @@
 require 'action_view'
+require 'simple_show/action_view_extensions/form_helper'
 require 'simple_show/base'
-
-if defined?(::Rails::Railtie)
-  require 'simple_show/railtie'
-end
 
 module SimpleShow
 

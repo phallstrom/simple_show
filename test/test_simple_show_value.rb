@@ -8,7 +8,7 @@ class SimpleShowValueTest < SimpleShowTestCase
       config.helpers[:to_piglatin] = :piglatin
     end
     @doc = Nokogiri::HTML.fragment(
-      simple_show_for @philip do |s| 
+      simple_show_for(@philip) do |s| 
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name
         o += s.show(:email) {|o| o.email.upcase }

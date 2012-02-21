@@ -4,7 +4,7 @@ class SimpleShowLabelTest < SimpleShowTestCase
 
   test 'labels and label overrides' do
     doc = Nokogiri::HTML.fragment(
-      simple_show_for @philip do |s| 
+      simple_show_for(@philip) do |s| 
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name
         o += s.show :phone, :label => 'Cell Phone'
