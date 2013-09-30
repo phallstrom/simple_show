@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = ""
   s.summary     = %q{SimpleShow is to #show what SimpleForm is to #edit}
   s.description = %q{SimpleShow is to #show what SimpleForm is to #edit}
+  s.license     = "MIT"
 
   s.rubyforge_project = "simple_show"
 
