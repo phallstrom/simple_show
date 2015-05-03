@@ -39,10 +39,15 @@ In our show action we can then do this:
       <%= s.show :cash_in_wallet, :to_currency => true  %>
       <%= s.show :height, :if => :tall %>
       <%= s.show :weight, :unless => :sensitive %>
+      <%= s.show :title, :unless_attr => :nil? %>
+      <%= s.show_collection :friends do |friend| %>
+        <%= friend.name %> - <%= friend.age %>
+      <% end %>
     <% end %>
 
 Which would generate (using the defaults) output like this, assuming that
-@johndor.tall returns false and @johndoe.sensitive returns true:
+@johndoe.tall returns false, @johndoe.sensitive returns true, and
+@johndoe.title is nil:
 
     <div class="simple_show person" id="person_123">
       <div class="show">
@@ -73,6 +78,13 @@ Which would generate (using the defaults) output like this, assuming that
         <label>Cash in wallet:</label>
         <span class="value">$123.45</span>
       </div>
+      <div class="show">
+        <label>Friends:</label>
+        <ul class="show_collection">
+          <li class="show_collection_item">Jim - 32</li>
+          <li class="show_collection_item">Tina - 23</li>
+        </ul>
+      </div>
       <br clear="all">
     </div>
 
@@ -84,7 +96,6 @@ if you don't want that BR tag then set SimpleShow.clear_on_close to false.
 
 == TODO:
 
-- Add support for associations.
 - Add options for booleans.
 
 == License:

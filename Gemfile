@@ -1,10 +1,11 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
 group :test do
-  gem 'rake', '0.8.7'
+  gem 'rake', '10.4.2'
   gem 'rails', '3.1.3'
   gem 'sqlite3'
   gem 'nokogiri'
+  gem 'test-unit'
 end
 
 # Specify your gem's dependencies in simple_show.gemspec
