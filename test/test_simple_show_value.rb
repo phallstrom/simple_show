@@ -1,31 +1,31 @@
 require 'test_helper'
 
 class SimpleShowValueTest < SimpleShowTestCase
-
   def setup
     super
     SimpleShow.setup do |config|
       config.helpers[:to_piglatin] = :piglatin
     end
     @doc = Nokogiri::HTML.fragment(
-      simple_show_for(@philip) do |s| 
+      simple_show_for(@philip) do |s|
         o  = ActiveSupport::SafeBuffer.new
         o += s.show :name
-        o += s.show(:email) {|o| o.email.upcase }
-        o += s.show :phone, :value => '867-5309'
-        o += s.show :born_on, :format => '%B %d'
-        o += s.show :born_on, :format => :mmddyy
-        o += s.show(:html) {|o| '<b>html</b>' }
-        o += s.show :handicap, :format => '%.3f'
-        o += s.show :name, :format => '%20s'
-        o += s.show :to_currency, :value => '12345.67', :to_currency => true
-        o += s.show :with_delimeter, :value => '12345.67', :with_delimiter => true
-        o += s.show :with_delimeter, :value => '12345.67', :with_delimiter => {:delimiter => ' '}
-        o += s.show :custom_helper, :value => 'piglatin', :to_piglatin => true
+        o += s.show(:email) { |o| o.email.upcase }
+        o += s.show :phone, value: '867-5309'
+        o += s.show :born_on, format: '%B %d'
+        o += s.show :born_on, format: :mmddyy
+        o += s.show(:html) { |_o| '<b>html</b>' }
+        o += s.show :handicap, format: '%.3f'
+        o += s.show :name, format: '%20s'
+        o += s.show :to_currency, value: '12345.67', to_currency: true
+        o += s.show :with_delimeter, value: '12345.67', with_delimiter: true
+        o += s.show :with_delimeter, value: '12345.67', with_delimiter: { delimiter: ' ' }
+        o += s.show :custom_helper, value: 'piglatin', to_piglatin: true
         o
       end
     )
   end
+
   test 'css class for data types' do
     assert @doc.css('span.value')[0].attr('class').split(/\s+/).include?('string') # :name
     assert @doc.css('span.value')[6].attr('class').split(/\s+/).include?('decimal') # :handicap
@@ -64,5 +64,4 @@ class SimpleShowValueTest < SimpleShowTestCase
   test 'custom helpers' do
     assert_equal 'iglatinpay', @doc.css('span.value')[11].text
   end
-
 end
